@@ -10,14 +10,30 @@ document.addEventListener('DOMContentLoaded', ()=>{
 });
 
 function handleClick(event){
-  console.log(event.target);
+
   let square = event.target;
   let position = square.id;
 
-  handleMove(position);
-  updateSquares();
+  if(handleMove(position)){
+    
+    setTimeout(()=>{
+      alert("O Jogo Acabou - O Vencedor foi " + playerTime);
+    },10);
+    
+  };
+  updateSquare(position);
 
 };
+
+
+
+function updateSquare(position){
+  let square = document.getElementById(position.toString());
+
+    let symbol = board[position];
+    square.innerHTML = `<div class='${symbol}'></div>`;
+}
+
 
 function updateSquares(){
   let squares = document.querySelectorAll(".square");
